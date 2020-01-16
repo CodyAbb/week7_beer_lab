@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import {eventBus} from '../main.js'
 
 import BeerListItem from './BeerListItem.vue'
 

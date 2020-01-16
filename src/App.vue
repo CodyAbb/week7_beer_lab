@@ -23,15 +23,15 @@ export default {
       beers: [],
       selectedBeerId: null,
       favouriteBeersArray: [],
-      pageNumber: "1"
+      pageNumber: 1
       // brewdogApiUrl: `https://api.punkapi.com/v2/beers?page=1&per_page=25`
 
     }
   },
   methods: {
     fetchData() {
-      // let apiurl = `https://api.punkapi.com/v2/beers?page=${this.pageNumber}&per_page=25`
-      fetch('https://api.punkapi.com/v2/beers?page=1&per_page=25')
+      let apiurl = `https://api.punkapi.com/v2/beers?page=${this.pageNumber}&per_page=25`
+      fetch(apiurl)
       .then(response => response.json())
       .then(beerArray => this.beers = beerArray);
     }
@@ -48,7 +48,8 @@ export default {
     })
 
     eventBus.$on('next-page-select', (amount) =>{
-
+      this.pageNumber += amount;
+      this.fetchData();
     })
   },
 
