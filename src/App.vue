@@ -16,16 +16,28 @@ export default {
   name: 'app',
   data() {
     return{
-      beers: []
+      beers: [],
+      selectedBeerId: null,
+      renderedBeer: {}
     }
   },
   mounted(){
     fetch('https://api.punkapi.com/v2/beers')
       .then(response => response.json())
       .then(beerArray => this.beers = beerArray)
+
+    eventBus.$on('beer-selected', (beerId) => {
+      this.selectedBeerId = beerId
+    })
   },
   components: {
     "beer-list": BeerList
+  },
+  computed: {
+    renderBeer: function() {
+      const result = this.beers.find(beer => beer.id === this.selectedBeerId)
+      return this.renderedBeer = result
+    }
   }
 }
 </script>

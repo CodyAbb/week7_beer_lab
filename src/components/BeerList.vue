@@ -1,6 +1,6 @@
 <template lang="html">
   <ul>
-    <beer-list-item v-for="beer in beers" :beer="beer" :key="index">{{beer.name}}</beer-list-item>
+    <beer-list-item v-for="(beer, index) in beers" :beer="beer" :key="index">{{beer.name}}</beer-list-item>
   </ul>
 </template>
 

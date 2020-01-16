@@ -10,7 +10,7 @@ export default {
   props: ['beer'],
   methods: {
     handleClick(){
-      eventBus.$emit('beer-selected', this.beer)
+      eventBus.$emit('beer-selected', this.beer.id)
     }
   }
 }
