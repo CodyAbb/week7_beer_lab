@@ -2,7 +2,7 @@
   <article v-if="beer">
     <div class="outside-grid">
       <h3>{{ beer.name }}</h3>
-      <button v-on:click="handleClick" type="button" name="button">Add To Favourites</button>
+      <button id="button" v-on:click="handleClick" type="button" name="button">Add To Favourites</button>
     </div>
 
     <dl>
@@ -10,6 +10,7 @@
         <div class="description-grid">
           <dt>Description:</dt>
           <dd>{{ beer.description }}</dd>
+          <br>
           <dt>ABV:</dt>
           <dd>{{ beer.abv }}</dd>
         </div>
@@ -55,4 +56,19 @@ export default {
     justify-content: center;
     align-items: center;
   }
+
+  #button {
+    font-size: 14px;
+    padding: 5px 10px;
+  text-align: center;
+  background-color: #00afdb;
+  color: white;
+  border: none;
+}
+
+#button:hover {
+  background-color: white;
+  color: #00afdb;
+  border: solid 1px #00afdb;
+}
 </style>

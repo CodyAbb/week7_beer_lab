@@ -22,11 +22,12 @@ export default {
     return{
       beers: [],
       selectedBeerId: null,
-      favouriteBeersArray: []
+      favouriteBeersArray: [],
+      brewdogApiUrl: 'https://api.punkapi.com/v2/beers?page=1&per_page=25'
     }
   },
   mounted(){
-    fetch('https://api.punkapi.com/v2/beers')
+    fetch(this.brewdogApiUrl)
       .then(response => response.json())
       .then(beerArray => this.beers = beerArray)
 
@@ -59,10 +60,13 @@ export default {
   text-align: left;
   color: #2c3e50;
   margin-top: 60px;
+  width: 90%;
 }
 
 h1 {
   text-align: center;
+  margin-bottom: 50px;
+  font-size: 2em;
 }
 
 .container {
