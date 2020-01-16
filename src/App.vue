@@ -23,13 +23,21 @@ export default {
       beers: [],
       selectedBeerId: null,
       favouriteBeersArray: [],
-      brewdogApiUrl: 'https://api.punkapi.com/v2/beers?page=1&per_page=25'
+      pageNumber: "1"
+      // brewdogApiUrl: `https://api.punkapi.com/v2/beers?page=1&per_page=25`
+
+    }
+  },
+  methods: {
+    fetchData() {
+      // let apiurl = `https://api.punkapi.com/v2/beers?page=${this.pageNumber}&per_page=25`
+      fetch('https://api.punkapi.com/v2/beers?page=1&per_page=25')
+      .then(response => response.json())
+      .then(beerArray => this.beers = beerArray);
     }
   },
   mounted(){
-    fetch(this.brewdogApiUrl)
-      .then(response => response.json())
-      .then(beerArray => this.beers = beerArray)
+    this.fetchData();
 
     eventBus.$on('beer-selected', (beerId) => {
       this.selectedBeerId = beerId
@@ -38,7 +46,12 @@ export default {
     eventBus.$on('favourite-beer-selected', (beer) => {
       this.favouriteBeersArray.push(beer)
     })
+
+    eventBus.$on('next-page-select', (amount) =>{
+
+    })
   },
+
   components: {
     "beer-list": BeerList,
     "beer-detail": BeerDetail,

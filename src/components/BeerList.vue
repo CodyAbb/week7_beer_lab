@@ -5,8 +5,8 @@
       <beer-list-item v-for="(beer, index) in beers" :beer="beer" :key="index">{{beer.name}}</beer-list-item>
     </ul>
     <br>
-    <p><i class="previous"></i> Previous</p>
-    <p>Next <i class="next"></i></p>
+    <button><i class="previous"></i> Previous</button>
+    <button v-on:click="handleNextClick"><i class="next"></i>Next </button>
   </div>
 </template>
 
@@ -19,6 +19,11 @@ export default {
   props: ['beers'],
   components: {
     "beer-list-item": BeerListItem
+  },
+  methods: {
+    handleNextClick(){
+      eventBus.$emit('next-page-select', 1)
+    }
   }
 }
 </script>
