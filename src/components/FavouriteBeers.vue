@@ -1,10 +1,13 @@
 <template lang="html">
-
+  <ul>
+    <li v-for="beer in beers">{{beer.name}}</li>
+  </ul>
 </template>
 
 <script>
 export default {
-  name: 'favourite-beers'
+  name: 'favourite-beers',
+  props: ['beers']
 }
 </script>
 
