@@ -1,11 +1,16 @@
 <template>
   <div id="app">
-
+    <h1>Brewdog Beers</h1>
+    <div class="container">
+      <beer-list :beers='beers'></beer-list>
+    </div>
   </div>
 </template>
 
 <script>
 
+import{eventBus} from './main.js';
+import BeerList from './components/BeerList.vue'
 
 export default {
   name: 'app',
@@ -19,6 +24,9 @@ export default {
       .then(response => response.json())
       .then(beerArray => this.beers = beerArray)
   },
+  components: {
+    "beer-list": BeerList
+  }
 }
 </script>
 
