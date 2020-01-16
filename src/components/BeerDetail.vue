@@ -12,7 +12,7 @@
           <dd>{{ beer.description }}</dd>
           <br>
           <dt>ABV:</dt>
-          <dd>{{ beer.abv }}</dd>
+          <dd>{{ beer.abv }}%</dd>
         </div>
         <div class="image-grid">
           <img :src="beer.image_url" alt="">

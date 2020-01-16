@@ -5,8 +5,8 @@
       <beer-list-item v-for="(beer, index) in beers" :beer="beer" :key="index">{{beer.name}}</beer-list-item>
     </ul>
     <br>
-    <button><i class="previous"></i> Previous</button>
-    <button v-on:click="handleNextClick"><i class="next"></i>Next </button>
+    <button class="previous-button" v-on:click="handlePreviousClick"><i class="previous"></i>  Previous</button>
+    <button class="next-button" v-on:click="handleNextClick">Next  <i class="next"></i></button>
   </div>
 </template>
 
@@ -23,7 +23,10 @@ export default {
   },
   methods: {
     handleNextClick(){
-      eventBus.$emit('next-page-select', 1)
+      eventBus.$emit('page-select', 1)
+    },
+    handlePreviousClick(){
+      eventBus.$emit('page-select', -1)
     }
   }
 }
@@ -49,5 +52,13 @@ i{
 .next {
   transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
+}
+
+.next-button{
+  border: none;
+}
+
+.previous-button{
+  border: none;
 }
 </style>

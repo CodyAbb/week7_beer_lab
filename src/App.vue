@@ -47,9 +47,14 @@ export default {
       this.favouriteBeersArray.push(beer)
     })
 
-    eventBus.$on('next-page-select', (amount) =>{
-      this.pageNumber += amount;
-      this.fetchData();
+
+    eventBus.$on('page-select', (amount) =>{
+      if (this.pageNumber >= 0) {
+        this.pageNumber += amount;
+        this.fetchData();
+      }
+
+
     })
   },
 
