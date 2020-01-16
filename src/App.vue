@@ -3,6 +3,7 @@
     <h1>Brewdog Beers</h1>
     <div class="container">
       <beer-list :beers='beers'></beer-list>
+      <beer-detail :beer='renderedBeer'></beer-detail>
     </div>
   </div>
 </template>
@@ -11,14 +12,14 @@
 
 import{eventBus} from './main.js';
 import BeerList from './components/BeerList.vue'
+import BeerDetail from './components/BeerDetail.vue'
 
 export default {
   name: 'app',
   data() {
     return{
       beers: [],
-      selectedBeerId: null,
-      renderedBeer: {}
+      selectedBeerId: null
     }
   },
   mounted(){
@@ -31,12 +32,12 @@ export default {
     })
   },
   components: {
-    "beer-list": BeerList
+    "beer-list": BeerList,
+    "beer-detail": BeerDetail
   },
   computed: {
-    renderBeer: function() {
-      const result = this.beers.find(beer => beer.id === this.selectedBeerId)
-      return this.renderedBeer = result
+    renderedBeer: function() {
+      return this.beers.find(beer => beer.id === this.selectedBeerId)
     }
   }
 }
