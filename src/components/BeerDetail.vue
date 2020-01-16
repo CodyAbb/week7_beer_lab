@@ -9,14 +9,23 @@
       <dd>{{ beer.abv }}</dd>
 
       <img :src="beer.image_url" alt="">
+
+      <button v-on:click="handleClick" type="button" name="button">Add To Favourites</button>
     </dl>
   </article>
 </template>
 
 <script>
+import {eventBus} from '../main.js'
+
 export default {
   name: 'beer-detail',
-  props: ['beer']
+  props: ['beer'],
+  methods: {
+    handleClick(){
+      eventBus.$emit('favourite-beer-selected', this.beer)
+    }
+  }
 }
 </script>
 
